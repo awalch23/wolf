@@ -75,7 +75,13 @@ module.exports = class Wolf {
         const config = this.config;
         const currentPrice = this.ticker.meta.ask;
         const price = config.buyLimitPercentage ? (currentPrice - (currentPrice * config.buyLimitPercentage)) : currentPrice;
+        this.displayInfo();
         this.purchase(price);
+    }
+
+    async displayInfo() {
+        console.log('\n' + JSON.stringify(this.symbol, null, 2));
+        console.log(this.config);
     }
 
     //digest the queue of open buy/sell orders
